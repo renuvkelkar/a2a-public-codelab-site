@@ -1,61 +1,129 @@
-
 <!doctype html>
-
-<html>
+<html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
-  <meta name="theme-color" content="#4F7DC9">
-  <meta charset="UTF-8">
-  <title>Public Google Codelab from Terminal</title>
-  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
-  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="https://storage.googleapis.com/claat-public/codelab-elements.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A2A Festival Mission Control Codelab</title>
   <style>
-    .success {
-      color: #1e8e3e;
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      background: #f6f8fa;
+      color: #24292f;
     }
-    .error {
-      color: red;
+    header {
+      background: #0d1117;
+      color: white;
+      padding: 48px 24px;
+    }
+    main {
+      max-width: 920px;
+      margin: 32px auto;
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+    }
+    h1, h2, h3 { line-height: 1.25; }
+    h1 { font-size: 2.4rem; }
+    h2 {
+      border-top: 1px solid #d0d7de;
+      padding-top: 28px;
+      margin-top: 36px;
+    }
+    pre {
+      background: #0d1117;
+      color: #e6edf3;
+      padding: 18px;
+      border-radius: 12px;
+      overflow-x: auto;
+    }
+    code {
+      background: #eef2f7;
+      padding: 2px 5px;
+      border-radius: 5px;
+    }
+    pre code {
+      background: transparent;
+      padding: 0;
+    }
+    li { margin: 6px 0; }
+    .hero {
+      max-width: 920px;
+      margin: 0 auto;
+    }
+    .button {
+      display: inline-block;
+      margin-top: 16px;
+      background: #2f81f7;
+      color: white;
+      padding: 12px 18px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
     }
   </style>
 </head>
 <body>
-  <google-codelab-analytics gaid="UA-49880327-14" ga4id=""></google-codelab-analytics>
-  <google-codelab codelab-gaid=""
-                  codelab-ga4id=""
-                  id="public-google-codelab"
-                  title="Public Google Codelab from Terminal"
-                  environment="web"
-                  feedback-link="https://github.com/YOUR_GITHUB_USERNAME/public-google-codelab/issues">
-    
-      <google-codelab-step label="Overview" duration="2">
-        <p>This is a public Google Codelab-style tutorial created from Markdown using <code>claat</code>.</p>
-<p>In this codelab, you will learn how to:</p>
-<ul>
-<li>Create a codelab source file</li>
-<li>Export it to static HTML</li>
-<li>Publish it publicly with GitHub Pages</li>
-</ul>
+  <header>
+    <div class="hero">
+      <h1>A2A Festival Mission Control Codelab</h1>
+      <p>A public, beginner-friendly A2A-style multi-agent orchestration lab.</p>
+      <a class="button" href="https://colab.research.google.com/github/renuvkelkar/a2a-colab-public-site/blob/main/colab-notebook/a2a_festival_mission_control_colab.ipynb">
+        Open the Colab Notebook
+      </a>
+    </div>
+  </header>
+  <main>
+    <h1>Public Colab Codelab Draft: A2A Festival Mission Control</h1>
 
+<h2>One-line hook</h2>
+<p>Build a multi-agent “mission control” system for a cyberpunk botanical night market using Agent2Agent-style discovery, task delegation, and response synthesis.</p>
 
-      </google-codelab-step>
-    
-      <google-codelab-step label="Step 1: Install claat" duration="3">
-        <p>Install the Google Codelabs command-line tool:</p>
-<pre><code language="language-bash" class="language-bash">go install github.com/googlecodelabs/tools/claat@latest
-export PATH=&#34;$PATH:$(go env GOPATH)/bin&#34;
-</code></pre>
+<h2>Why this is better than the pizza/burger demo</h2>
+<p>The food-ordering example is useful, but it can feel like a chatbot calling two APIs. This version makes the coordination problem visible: three specialist agents each own a different part of a richer brief, and the orchestrator has to discover, route, call, and combine their work.</p>
 
+<h2>Use case</h2>
+<p>A local organiser wants to plan a one-night immersive mini festival. They provide a theme, guest count, budget, and location. The orchestrator delegates to:</p>
 
-      </google-codelab-step>
-    
-  </google-codelab>
+<p>1. Vibe Scout — guest experience and creative concept.</p>
+<p>2. Logistics Pilot — schedule, crowd-flow, safety, and weather fallback.</p>
+<p>3. Budget Oracle — budget split and trade-off rules.</p>
 
-  <script src="https://storage.googleapis.com/claat-public/native-shim.js"></script>
-  <script src="https://storage.googleapis.com/claat-public/custom-elements.min.js"></script>
-  <script src="https://storage.googleapis.com/claat-public/prettify.js"></script>
-  <script src="https://storage.googleapis.com/claat-public/codelab-elements.js"></script>
-  <script src="//support.google.com/inapp/api.js"></script>
+<h2>Public Colab lesson flow</h2>
 
+<p>1. Install packages.</p>
+<p>2. Explain A2A in one mental model: agent card → discovery → task → response.</p>
+<p>3. Define minimal teaching models: AgentCard, Skill, TaskRequest, TaskResponse.</p>
+<p>4. Create the three agents with deterministic starter handlers.</p>
+<p>5. Wrap each agent as an HTTP service.</p>
+<p>6. Discover each agent via <code>/.well-known/agent.json</code>.</p>
+<p>7. Build Mission Control as the orchestrator.</p>
+<p>8. Run the full plan.</p>
+<p>9. Inspect one JSON-RPC-style message.</p>
+<p>10. Extend with a fourth agent.</p>
+<p>11. Simulate failures and add graceful fallback.</p>
+<p>12. Discuss production hardening.</p>
+
+<h2>Common fixes to include in the published codelab</h2>
+
+<li>`RuntimeError: This event loop is already running` → use `nest_asyncio.apply()`.</li>
+<li>`Address already in use` → restart runtime or change ports.</li>
+<li>`httpx.ConnectError` → wait longer after server startup.</li>
+<li>Wrong agent card URL → use localhost in Colab and public service URL in Cloud Run.</li>
+<li>`ModuleNotFoundError` → rerun install cell after runtime reset.</li>
+<li>Public Colab fails for viewers → keep all starter code inside the notebook.</li>
+<li>Responses are too static → replace handlers with LLM calls without changing the A2A boundary.</li>
+<li>Security concerns → treat remote cards/messages as untrusted input; validate and sanitize before prompt use.</li>
+
+<h2>Upgrade path</h2>
+
+<li>Local teaching harness → official A2A Python SDK server.</li>
+<li>Deterministic handlers → Gemini/ADK/LangGraph/CrewAI agents.</li>
+<li>Local notebook ports → Cloud Run services.</li>
+<li>No auth → IAM/API key/auth gateway.</li>
+<li>Simple text output → structured artifacts and streaming.</li>
+  </main>
 </body>
 </html>

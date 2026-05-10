@@ -1,29 +1,48 @@
-author: Renuka Kelkar
-summary: A public Google Codelab created from the terminal
-id: public-google-codelab
-categories: web
-environments: Web
-status: Published
-feedback link: https://github.com/YOUR_GITHUB_USERNAME/public-google-codelab/issues
+# Public Colab Codelab Draft: A2A Festival Mission Control
 
-# Public Google Codelab from Terminal
+## One-line hook
+Build a multi-agent “mission control” system for a cyberpunk botanical night market using Agent2Agent-style discovery, task delegation, and response synthesis.
 
-## Overview
-Duration: 2
+## Why this is better than the pizza/burger demo
+The food-ordering example is useful, but it can feel like a chatbot calling two APIs. This version makes the coordination problem visible: three specialist agents each own a different part of a richer brief, and the orchestrator has to discover, route, call, and combine their work.
 
-This is a public Google Codelab-style tutorial created from Markdown using `claat`.
+## Use case
+A local organiser wants to plan a one-night immersive mini festival. They provide a theme, guest count, budget, and location. The orchestrator delegates to:
 
-In this codelab, you will learn how to:
+1. Vibe Scout — guest experience and creative concept.
+2. Logistics Pilot — schedule, crowd-flow, safety, and weather fallback.
+3. Budget Oracle — budget split and trade-off rules.
 
-- Create a codelab source file
-- Export it to static HTML
-- Publish it publicly with GitHub Pages
+## Public Colab lesson flow
 
-## Step 1: Install claat
-Duration: 3
+1. Install packages.
+2. Explain A2A in one mental model: agent card → discovery → task → response.
+3. Define minimal teaching models: AgentCard, Skill, TaskRequest, TaskResponse.
+4. Create the three agents with deterministic starter handlers.
+5. Wrap each agent as an HTTP service.
+6. Discover each agent via `/.well-known/agent.json`.
+7. Build Mission Control as the orchestrator.
+8. Run the full plan.
+9. Inspect one JSON-RPC-style message.
+10. Extend with a fourth agent.
+11. Simulate failures and add graceful fallback.
+12. Discuss production hardening.
 
-Install the Google Codelabs command-line tool:
+## Common fixes to include in the published codelab
 
-```bash
-go install github.com/googlecodelabs/tools/claat@latest
-export PATH="$PATH:$(go env GOPATH)/bin"
+- `RuntimeError: This event loop is already running` → use `nest_asyncio.apply()`.
+- `Address already in use` → restart runtime or change ports.
+- `httpx.ConnectError` → wait longer after server startup.
+- Wrong agent card URL → use localhost in Colab and public service URL in Cloud Run.
+- `ModuleNotFoundError` → rerun install cell after runtime reset.
+- Public Colab fails for viewers → keep all starter code inside the notebook.
+- Responses are too static → replace handlers with LLM calls without changing the A2A boundary.
+- Security concerns → treat remote cards/messages as untrusted input; validate and sanitize before prompt use.
+
+## Upgrade path
+
+- Local teaching harness → official A2A Python SDK server.
+- Deterministic handlers → Gemini/ADK/LangGraph/CrewAI agents.
+- Local notebook ports → Cloud Run services.
+- No auth → IAM/API key/auth gateway.
+- Simple text output → structured artifacts and streaming.
