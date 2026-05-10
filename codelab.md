@@ -1,3 +1,12 @@
+id: a2a-festival-mission-control
+summary: Build a beginner-friendly A2A-style multi-agent Colab with three specialist agents.
+categories: AI, Agents, A2A, Colab
+tags: a2a, agents, colab, python
+status: Published
+authors: Renu Kelkar
+
+# A2A Festival Mission Control Codelab
+
 # Public Colab Codelab Draft: A2A Festival Mission Control
 
 ## One-line hook
