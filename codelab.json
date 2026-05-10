@@ -1,0 +1,24 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2026-05-07T22:44:47+01:00",
+  "id": "public-google-codelab",
+  "duration": 5,
+  "title": "Public Google Codelab from Terminal",
+  "summary": "A public Google Codelab created from the terminal",
+  "source": "codelab.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "web"
+  ],
+  "tags": [
+    "web"
+  ],
+  "feedback": "https://github.com/YOUR_GITHUB_USERNAME/public-google-codelab/issues",
+  "url": "public-google-codelab"
+}
